@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Все статьи на сайте
+{% endblock %}
+
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Все статьи</h1>
+        <a class="btn btn-success" href="/articles/create">Новый пост</a><br><br>
+
+        {% if articles|length > 0 %}
+            {% for post in articles %}
+                <div class="alert alert-info">
+                    <h2>{{ post.title }}</h2>
+                    <p>{{ post.intro }}</p>
+                    <p><b>Дата: {{ post.date.date() }}</b></p>
+                    <a href="/articles/{{ post.id }}" class="btn btn-success">Перейти к статье</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>В настоящее время еще нет статей</p>
+        {% endif %}
+    </div>
+{% endblock %}

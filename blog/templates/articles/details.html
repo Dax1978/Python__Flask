@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Post #{{ article.id }}
+{% endblock %}
+
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>{{ article.title }}</h1>
+
+        <div class="alert alert-info">
+            <p>{{ article.text }}</p>
+            <p><b>Дата: {{ article.date.date() }}</b></p>
+            <a href="{{ url_for('articles_app.list') }}" class="btn btn-success">Вернуться</a>
+            <a href="/articles/{{ article.id }}/update" class="btn btn-warning">Редактировать</a>
+            <a href="/articles/{{ article.id }}/delete" class="btn btn-danger">Удалить</a>
+        </div>
+    </div>
+{% endblock %}
