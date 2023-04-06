@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    User # {{ user.id }}
+{% endblock %}
+
+
+{% block body %}
+    <h1>Email: {{ user.email }}</h1>
+    <p>Password (hash): {{ user.password }}</p>
+    <hr>
+    <p>First name: {{ user.first_name }}</p>
+    <p>Last_name: {{ user.last_name }}</p>
+    <hr>
+    <p>Is staff: {{ user.staff }}</p>
+{% endblock %}
