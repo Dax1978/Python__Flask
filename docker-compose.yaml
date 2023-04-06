@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  app:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    environment:
+      DATABASE_URI: postgresql://user:password@pg:5432/blog
+    ports:
+      - "8081:5000"
+    depends_on:
+      - pg
+
+  pg:
+    image: postgres:13.0-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: blog
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - "dbdata:/var/lib/postgresql/data"
+    ports:
+      - "5432:5432"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+volumes:
+  dbdata:

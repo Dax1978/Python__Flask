@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    {{ super() }}
+    Articles
+{% endblock %}
+
+
+{% block body %}
+<div class="row">
+    <div class="col">
+        <h1>Articles:</h1>
+        <!--    {{ url_for('report.report_list') }}-->
+        <ul>
+            <!--        {% for user in users %}-->
+            <!--            <li>{{ user }}</li>-->
+            <!--        {% endfor %}-->
+            {% for article in articles %}
+            <li>
+                <div class="card text-center">
+                    <div class="card-header">
+                        {{ article.title }}
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ article.brief }}</p>
+                        <a href="{{ url_for('article.article_get', pk=article.id) }}" class="btn btn-primary">К статье</a>
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                        <a href="{{ url_for('user.user_get', pk=article.author_id) }}">{{ users[article.author_id - 1] }}</a>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!--    <div class="col">-->
+    <!--        2 из 1-->
+    <!--    </div>-->
+</div>
+{% endblock %}
