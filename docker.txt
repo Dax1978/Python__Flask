@@ -1,0 +1,14 @@
+docker build . -t flask_blog
+docker run -p 8081:5000 flask_blog
+
+docker build -t flask_blog:lesson_3 .
+# -t задает имя и тег нового образа
+# . указывает базовый каталог, в котором должен быть создан контейнер. Где находится Dockerfile
+docker run --name flask_blog -d -p 5000:5000 --rm flask_blog:lesson_3
+
+docker-compose build
+docker-compose up -d
+
+# Это не Docker но нужно!
+flask db migrate -m “update user model”
+flask db upgrade
