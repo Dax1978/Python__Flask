@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ super() }}
+    Article #{{ article.id }}: {{ article.title }}
+{% endblock %}
+
+{% block body %}
+<div class="card text-center mt-3">
+    <div class="card-header">
+        {{ article.title }}
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{ article.text }}</p>
+        {% if article.tags %}
+            <div>Tags:</div>
+            <ul>
+                {% for tag in article.tags %}
+                    <li>{{ tag.name }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <div class="card-footer text-body-secondary">
+        <div>Published {{ article.dt_created }}</div>
+        <div>by {{ article.author.user.first_name }} {{ article.author.user.last_name }}</div>
+        <a href="{{ url_for('user.user_get', pk=article.author.user_id) }}">{{ article.author.user.email }}</a>
+    </div>
+</div>
+{% endblock %}

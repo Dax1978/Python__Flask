@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    {{ super() }}
+    Article
+{% endblock %}
+
+
+{% block body %}
+
+<div class="card text-center">
+    <div class="card-header">
+        {{ article.title }}
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ article.brief }}</h5>
+        <p class="card-text">{{ article.text }}</p>
+    </div>
+    <div class="card-footer text-body-secondary">
+        <a href="{{ url_for('user.user_get', pk=article.author_id) }}">{{ author.email }}</a>
+    </div>
+</div>
+{% endblock %}
